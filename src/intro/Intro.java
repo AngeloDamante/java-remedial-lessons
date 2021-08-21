@@ -19,17 +19,6 @@ public class Intro {
 	}
 	
 	public static void esempioOven() {
-		/* Creare tre forni con 3 nomi,
-		 * controllare l'usura del primo forno e se è da riparare
-		 * usare la resistenza del secondo forno
-		 * 
-		 *  creare due metodi che aprano e chiudano il coperchio del forno
-		 *  aggiungendo l'attributo relativo e modificare il metodo 
-		 *  accendi affinchè si accendo se e solo se il coperchio è chiuso
-		 *  */
-	}
-
-	public static void main(String[] args) {
 		
 		Resistor miaResistenza = new Resistor(1000, "classic");
 		Oven mioForno = new Oven("samsungX", miaResistenza);
@@ -45,6 +34,65 @@ public class Intro {
 		
 		System.out.println(mioForno.visualizza());
 		System.out.println(altraResistenza.getUsura());
+		
+		mioForno.spegni();
+		
+		mioForno.apriCoperchio();
+		mioForno.accendi(5);
+		System.out.println(mioForno.visualizza());
+		
+		mioForno.chiudiCoperchio();
+		mioForno.accendi(5);
+		System.out.println(mioForno.visualizza());
+		
+	}
+
+	public static int sum(int a, int b) {
+		return (a + b);
+	}
+	
+	public static void introJava() {
+		/* variabili di tipi primitivi (int, float,...) */
+		int nome = 3;
+		
+		/* oggetti - variabili di tipo classe */
+		Resistor r = new Resistor(150, "classic");
+		Oven fornoFoo = new Oven("aasddf", r);
+		
+		/* array - primitivi */
+		int[] x = {1, 2, 3, 4, 5};
+		System.out.println(x[2]); // -> 3
+		
+		int[] y = new int[10]; // array vuoto
+		
+		// riempe array y
+		int i = 0;
+		while(i < 10) {
+			y[i] = i++;
+		}
+		
+		/* array - oggetti */
+		Oven[] forni = new Oven[10];
+		Resistor rn = new Resistor(100, "boh");
+		
+		i = 0;
+		while(i < 10) {
+			forni[i] = new Oven("forno" + i, rn);
+			i++;
+		}
+		
+		/* valori di ritorno */
+		int num1 = 10;
+		int num2 = 20;
+		int somma = sum(num1, num2);
+	}
+	
+	
+	public static void main(String[] args) {
+		// esempioAutomobile();
+		// esempioOven();
+		// introJava();
+		
 	}
 
 }

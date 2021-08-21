@@ -1,4 +1,6 @@
-package intro;
+package oop;
+
+import oop.Resistor;
 
 public class Oven {
 	/* attributes */
@@ -9,11 +11,11 @@ public class Oven {
 	private Resistor resistenza; // aggregazione (uso)
 	
 	/* methods */
-	public Oven(String nome, Resistor resistenza) {
+	public Oven(String nome, Resistor r) {
 		this.nome = nome;
 		this.stato = "OFF";
 		this.temperatura = 0;
-		this.resistenza = resistenza;
+		this.resistenza = r;
 		this.coperchio = 0; // chiuso
 	}
 	
@@ -29,9 +31,31 @@ public class Oven {
 		}
 	}
 	
-	public void spegni() {
-		this.stato = "OFF";
-		this.temperatura = 0;
+	//overload
+	public void accendi() {
+		if(this.coperchio == 0) {
+			this.stato = "ON";
+			this.temperatura = 0;
+			this.resistenza.attiva();
+		}
+		else {
+			this.stato = "OFF";
+			System.out.println("il coperchio non è chiuso");
+		}
+	}
+	
+	//overload
+	public void accendi(int initTemperature, int coperchio) {
+		this.coperchio = coperchio;
+		if(this.coperchio == 0) {
+			this.stato = "ON";
+			this.temperatura = initTemperature;
+			this.resistenza.attiva();
+		}
+		else {
+			this.stato = "OFF";
+			System.out.println("il coperchio non è chiuso");
+		}
 	}
 	
 	public void apriCoperchio() {
@@ -41,6 +65,12 @@ public class Oven {
 	public void chiudiCoperchio() {
 		this.coperchio = 0;
 	}
+	
+	public void spegni() {
+		this.stato = "OFF";
+		this.temperatura = 0;
+	}
+	
 	public String visualizza() {
 		return ("stato = " + this.stato + " temperatura = " + this.temperatura);
 	}
@@ -59,5 +89,4 @@ public class Oven {
 	private void sostituisciResistenza(Resistor nuovaResistenza) {
 		this.resistenza = nuovaResistenza;
 	}
-	
 }
