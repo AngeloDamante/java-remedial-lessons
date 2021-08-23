@@ -5,16 +5,19 @@ public class CampOven extends Oven{
 	private int numFiammelle;
 	private int carburante;
 	
+	public static int numManopole = 3;
+	
 	/* methods */
 	public CampOven(String nome, Resistor r, int numFiammelle) {
 		super(nome, r);
 		this.carburante = 0;
 		this.setNumFiammelle(numFiammelle);
-			
 	}
 	
-	public void apriCoperchio() {
-		
+	public static void boh() {
+		System.out.println("jfgjfgjf \n");
+		numManopole = 0;
+		// numFiammelle = 0; NO
 	}
 	
 	private void setNumFiammelle(int numFiammelle) {
