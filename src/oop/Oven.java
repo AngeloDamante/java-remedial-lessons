@@ -58,11 +58,11 @@ public class Oven {
 		}
 	}
 	
-	public final void apriCoperchio() {
+	public void apriCoperchio() {
 		this.coperchio = 1;
 	}
 	
-	public final void chiudiCoperchio() {
+	public void chiudiCoperchio() {
 		this.coperchio = 0;
 	}
 	

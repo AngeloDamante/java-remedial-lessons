@@ -1,9 +1,10 @@
 package oop;
 
-public class CampOven extends Oven{
+public final class CampOven extends Oven{
 	/* attributes */
-	private int numFiammelle;
+	// private int numFiammelle;
 	private int carburante;
+	private Fiammella[] Fiammelle;
 	
 	public static int numManopole = 3;
 	
@@ -11,21 +12,22 @@ public class CampOven extends Oven{
 	public CampOven(String nome, Resistor r, int numFiammelle) {
 		super(nome, r);
 		this.carburante = 0;
-		this.setNumFiammelle(numFiammelle);
+		
+		// crea un array
+		this.Fiammelle = new Fiammella[numFiammelle];
+		this.riempiVettore();
 	}
 	
-	public static void boh() {
-		System.out.println("jfgjfgjf \n");
-		numManopole = 0;
-		// numFiammelle = 0; NO
-	}
 	
-	private void setNumFiammelle(int numFiammelle) {
-		if (numFiammelle > 2 && numFiammelle < 8) {
-			this.numFiammelle = numFiammelle;
-		}else {
-			this.numFiammelle = 2;
+	private void riempiVettore() {
+		for(int i = 0; i < this.Fiammelle.length; i++) {
+			// crea un oggetto nel i-esimo posto dell'array
+			this.Fiammelle[i] = new Fiammella();
 		}
+	}
+	
+	public void apriCoperchio() {
+		
 	}
 	
 	public boolean caricaCarburante() {
@@ -42,27 +44,25 @@ public class CampOven extends Oven{
 	
 	@Override
 	public void accendi() {
-		int fiamma = 1;
-		while(fiamma < this.numFiammelle) {
-			System.out.println("fiamma "+ fiamma + "accesa\n");
-			fiamma++;
+		for(int fiamma = 0; fiamma < this.Fiammelle.length; fiamma++) {
+			this.Fiammelle[fiamma].on();
 		}
 	}
 	
 	//Overload
 	public void accendi(int numFiammelle) {
-		int fiamma = 1;
-		while(fiamma < numFiammelle) {
-			System.out.println("fiamma "+ fiamma + "accesa\n");
-			fiamma++;
+		if(numFiammelle <= this.Fiammelle.length) {
+			int fiamma = 1;
+			while(fiamma < numFiammelle) {
+				this.Fiammelle[fiamma].on();
+				fiamma++;
+			}
 		}
 	}
 	
 	public void spegni() {
-		int fiamma = 1;
-		while(fiamma < this.numFiammelle) {
-			System.out.println("fiamma "+ fiamma + "spenta\n");
-			fiamma++;
+		for(int fiamma = 0; fiamma < this.Fiammelle.length; fiamma++) {
+			this.Fiammelle[fiamma].off();
 		}
 		
 		this.carburante = 0;
